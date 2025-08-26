@@ -1,10 +1,63 @@
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+
+# ---------- Utility Functions ----------
+def step(x):
+    return np.where(x >= 0, 1, 0)
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def forward_xor(X, W1, b1, W2, b2):
+    hidden = sigmoid(np.dot(X, W1) + b1)
+    return sigmoid(np.dot(hidden, W2) + b2)
+
+def plot_boundary(predict_func, X, y):
+    x_min, x_max = -0.5, 1.5
+    y_min, y_max = -0.5, 1.5
+    xx, yy = np.meshgrid(np.linspace(x_min, x_max, 200),
+                         np.linspace(y_min, y_max, 200))
+    grid = np.c_[xx.ravel(), yy.ravel()]
+    Z = predict_func(grid).reshape(xx.shape)
+    fig, ax = plt.subplots()
+    ax.contourf(xx, yy, Z, levels=[-0.1, 0.5, 1.1], alpha=0.7, cmap=plt.cm.Pastel1)
+    ax.scatter(X[:,0], X[:,1], c=y.flatten(), edgecolors='k', cmap=plt.cm.Paired, s=80)
+    ax.set_title("Decision Boundary")
+    return fig
+
+# ---------- Dataset ----------
+X = np.array([[0,0],[0,1],[1,0],[1,1]])
+truth = {
+    "AND": np.array([[0],[0],[0],[1]]),
+    "OR": np.array([[0],[1],[1],[1]]),
+    "NAND": np.array([[1],[1],[1],[0]]),
+    "XOR": np.array([[0],[1],[1],[0]])
+}
+
+# ---------- Streamlit UI Styling ----------
+st.set_page_config(page_title="Interactive Logic Gates", layout="wide")
+st.markdown("""
+    <style>
+        body {background-color: white; color: #000;}
+        .sidebar .sidebar-content {background-color: #e3f2fd;} /* sky blue */
+        h1, h2, h3 {color: #ec407a;} /* pink headers */
+        div.stButton>button {background-color:#ec407a; color:white;}
+    </style>
+""", unsafe_allow_html=True)
+
+st.title("Logic Gates Trainer & Interactive Visualizer")
+
+# ---------- Tabs ----------
+tab1, tab2 = st.tabs(["Training & Visualization", "Interaction Mode"])
+
+# ---------------- TAB 1: Training & Visualization ----------------
 with tab1:
     gate = st.sidebar.selectbox("Select Gate", ["AND","OR","NAND","XOR"])
     mode = st.sidebar.radio("Mode", ["Manual weights", "Auto-train demo"])
     y = truth[gate]
 
     if mode == "Manual weights":
-        # Manual slider mode
         if gate != "XOR":
             w1 = st.sidebar.slider("Weight w1", -5.0, 5.0, 0.0, 0.1)
             w2 = st.sidebar.slider("Weight w2", -5.0, 5.0, 0.0, 0.1)
@@ -12,7 +65,7 @@ with tab1:
             predict_func = lambda inp: step(np.dot(inp, [w1,w2]) + b)
             preds = predict_func(X)
         else:
-            # Manual XOR slider
+            # Manual XOR slider mode
             h_w11 = st.sidebar.slider("Hidden w11", -10.0, 10.0, 1.0, 0.1)
             h_w12 = st.sidebar.slider("Hidden w12", -10.0, 10.0, 1.0, 0.1)
             h_w21 = st.sidebar.slider("Hidden w21", -10.0, 10.0, 1.0, 0.1)
@@ -35,7 +88,7 @@ with tab1:
         st.pyplot(plot_boundary(predict_func, X, y))
 
     else:
-        # Auto-train mode with Train button
+        # Auto-train mode with Train button and loss curve
         lr = st.sidebar.slider("Learning Rate", 0.01, 1.0, 0.1)
         epochs = st.sidebar.slider("Epochs", 10, 20000, 100)
         if st.button("Train"):
@@ -58,7 +111,6 @@ with tab1:
                 st.write("Weights:", w, "Bias:", bias)
                 st.write("Predictions:", preds.flatten().tolist())
                 st.write(f"Accuracy: {np.mean(preds==y.flatten())*100:.2f}%")
-                # Loss plot
                 fig_loss, ax = plt.subplots()
                 ax.plot(losses, color='pink')
                 ax.set_title("Training Error per Epoch")
@@ -86,9 +138,22 @@ with tab1:
                 st.subheader("XOR Predictions (Trained)")
                 st.write("Predictions:", preds.flatten().tolist())
                 st.write(f"Accuracy: {np.mean(preds==y.flatten())*100:.2f}%")
-                # Loss plot
                 fig_loss, ax = plt.subplots()
                 ax.plot(losses, color='pink')
                 ax.set_title("MSE Loss Curve")
                 st.pyplot(fig_loss)
                 st.pyplot(plot_boundary(predict_func, X, y))
+
+# ---------------- TAB 2: Interaction Mode ----------------
+with tab2:
+    st.header("Live Interaction Mode (Like interaction.py)")
+    st.write("Use sliders below to dynamically change weights and see predictions instantly:")
+
+    iw1 = st.slider("Weight 1", -5.0, 5.0, 0.0, 0.1)
+    iw2 = st.slider("Weight 2", -5.0, 5.0, 0.0, 0.1)
+    ib = st.slider("Bias", -5.0, 5.0, 0.0, 0.1)
+    preds = step(np.dot(X, [iw1, iw2]) + ib)
+    st.write("Inputs:", X.tolist())
+    st.write("Predictions with current weights:", preds.flatten().tolist())
+    st.write(f"Accuracy vs AND Gate Truth: {np.mean(preds==truth['AND'].flatten())*100:.2f}%")
+    st.pyplot(plot_boundary(lambda inp: step(np.dot(inp, [iw1,iw2]) + ib), X, truth['AND']))
