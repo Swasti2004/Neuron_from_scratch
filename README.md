@@ -1,17 +1,16 @@
-## NeuronGates
-
+##Neuron_Gates
 
 # 🧠 Perceptron Logic Gates Challenge  
 
-🔗 Live Demo: *[Add your Streamlit App Link here]*  
+🔗 Live Demo: *[https://neurongates.streamlit.app/]*  
 
 ---
 
 ## 📜 Overview  
-This project was created for the **"Build a Single Neuron" challenge** in the DC Hackathon.  
+This project was created for the **"Build a Single Neuron from Scratch to Train Logic Gates" ** .  
 It focuses on building a **Perceptron** — the simplest type of artificial neuron — completely from scratch using **Python and NumPy**.  
 
-The goal of the project is to show how a perceptron can learn to mimic **logic gates** such as AND, OR, and NAND.  
+The goal of the project is to show how a perceptron can learn to mimic **logic gates** such as AND, OR,Xor and NAND.  
 It also highlights the perceptron’s limitation when trying to solve the **XOR gate problem**, which cannot be learned by a single neuron.  
 
 With this project, you can:  
@@ -55,7 +54,7 @@ In short, this project acts as a **learning tool** to understand:
 
 ### 2. Clone Repository  
 ```bash
-git clone <your-repo-link>
+git clone <>
 cd <repo-folder>
 ````
 
@@ -145,7 +144,13 @@ Contributions are welcome! 🎉
 
 ## 👩‍💻 Authors
 
-* **\[Editable – Add your name(s) here]**
+### Disha Shrivastava
+
+🔗 [GitHub](https://github.com/Disha-shrivastava26) • [LinkedIn](www.linkedin.com/in/disha-shrivastava-21a697274)
+
+### Swasti Jain
+
+🔗 [GitHub](https://github.com/Swasti2004) • [LinkedIn](https://www.linkedin.com/in/swasti-jain2004/)
 
 ---
 
@@ -157,5 +162,4 @@ Licensed under the **MIT License** – free to use and modify.
 
 ```
 
-Do you want me to also **add badges** (Python, NumPy, Streamlit, Pygame, MIT License) at the top so it looks professional on GitHub?
-```
+
