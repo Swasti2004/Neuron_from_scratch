@@ -1,16 +1,15 @@
-##Neuron_Gates
 
-# 🧠 Perceptron Logic Gates Challenge  
+# 🧠 Neuron_Gates  
 
-🔗 Live Demo: *[https://neurongates.streamlit.app/]*  
+🔗 Live Demo: [https://neurongates.streamlit.app/](https://neurongates.streamlit.app/)  
 
 ---
 
 ## 📜 Overview  
-This project was created for the **"Build a Single Neuron from Scratch to Train Logic Gates" ** .  
+This project was created for the **"Build a Single Neuron from Scratch to Train Logic Gates"** challenge.  
 It focuses on building a **Perceptron** — the simplest type of artificial neuron — completely from scratch using **Python and NumPy**.  
 
-The goal of the project is to show how a perceptron can learn to mimic **logic gates** such as AND, OR,Xor and NAND.  
+The goal of the project is to show how a perceptron can learn to mimic **logic gates** such as **AND, OR, NAND, and XOR**.  
 It also highlights the perceptron’s limitation when trying to solve the **XOR gate problem**, which cannot be learned by a single neuron.  
 
 With this project, you can:  
@@ -21,14 +20,13 @@ With this project, you can:
 In short, this project acts as a **learning tool** to understand:  
 - How a perceptron works  
 - Why some problems are solvable with a single neuron (**linear separability**)  
-- Why more advanced networks (like multi-layer perceptrons) are needed for harder problems like XOR  
+- Why more advanced networks (**multi-layer perceptrons**) are needed for harder problems like XOR  
 
 ---
 
 ## 🔍 Observations  
-
 - The perceptron **successfully learns** linearly separable gates (AND, OR, NAND).  
-- It **fails to classify XOR**, demonstrating the **limitation of single-layer perceptrons**.  
+- It **fails to classify XOR**, demonstrating the limitation of single-layer perceptrons.  
 - Training progress is visible via **decision boundary shifts** across epochs.  
 - Hyperparameters like **learning rate and epochs** significantly impact convergence.  
 - Shows why **multi-layer networks (MLPs)** are required to solve XOR.  
@@ -36,13 +34,12 @@ In short, this project acts as a **learning tool** to understand:
 ---
 
 ## 📦 Deliveries  
-
-- ✅ **Python Implementation** – A perceptron built completely from scratch using NumPy.  
-- ✅ **Logic Gate Training** – Train the neuron on AND, OR, NAND, and XOR gates.  
-- ✅ **Visualization** – Real-time plots of weight updates and decision boundaries.  
-- ✅ **Interactive App** – Run and test via Streamlit and Pygame interfaces.  
-- ✅ **Documentation** – Includes project report with terminology, problem statement, and learning rules.  
-- ✅ **Educational Value** – Demonstrates linear separability and XOR limitations.  
+✅ **Python Implementation** – A perceptron built completely from scratch using NumPy.  
+✅ **Logic Gate Training** – Train the neuron on AND, OR, NAND, and XOR gates.  
+✅ **Visualization** – Real-time plots of weight updates and decision boundaries.  
+✅ **Interactive App** – Run and test via Streamlit and Pygame interfaces.  
+✅ **Documentation** – Includes project report with terminology, problem statement, and learning rules.  
+✅ **Educational Value** – Demonstrates linear separability and XOR limitations.  
 
 ---
 
@@ -54,8 +51,8 @@ In short, this project acts as a **learning tool** to understand:
 
 ### 2. Clone Repository  
 ```bash
-git clone <>
-cd <repo-folder>
+git clone https://github.com/Swasti2004/Neuron_from_scratch.git
+cd Neuron_Gates
 ````
 
 ### 3. Install Dependencies
@@ -77,21 +74,23 @@ Or explore Jupyter Notebooks:
 
 ---
 
-## 📁 File Structure
 
-```
-Perceptron-Logic-Gates/
-├── Documentation.docx     # Detailed write-up  
-├── README.md              # Project description  
-├── requirements.txt       # Dependencies (NumPy, Streamlit, Pygame, etc.)  
-├── gates-app.py           # Main application  
-├── interaction.py         # User interaction handling  
-├── xor.ipynb              # XOR demo in notebook form  
-├── train1.ipynb           # Training steps and visuals  
-└── .devcontainer/         # Dev container setup  
+## 📁 File Structure  
 ```
 
----
+Neuron\_Gates/
+├── Documentation.docx     # Detailed write-up
+├── LICENSE                # MIT License file
+├── README.md              # Project description
+├── requirements.txt       # Dependencies (NumPy, Streamlit, Pygame, etc.)
+├── gates-app.py           # Main application
+├── interaction.py         # User interaction handling
+├── xor.ipynb              # XOR demo in notebook form
+├── train1.ipynb           # Training steps and visuals
+└── .devcontainer/         # Dev container setup
+
+```
+
 
 ## 📊 Example Visuals
 
@@ -122,14 +121,7 @@ Through this project, you will:
 
 ---
 
-## 🚩 Future Improvements
 
-✅ Add Multi-Layer Perceptron (MLP) for XOR
-✅ Provide downloadable training logs
-✅ Support custom datasets beyond logic gates
-✅ Include more visualizations of weight updates
-
----
 
 ## 🤝 Contributing
 
@@ -160,6 +152,5 @@ Licensed under the **MIT License** – free to use and modify.
 
 ---
 
+
 ```
-
-
